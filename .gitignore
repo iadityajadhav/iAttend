@@ -1,0 +1,55 @@
+# =========================================================
+# 📦 BACKEND (Node + Express + MongoDB)
+# =========================================================
+
+# Node modules
+backend/node_modules/
+
+# Environment files
+backend/.env
+.env
+
+# Build or dist folders (future-proof if you ever transpile)
+backend/dist/
+backend/build/
+
+# Logs and runtime files
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# Cache files
+*.cache
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Optional: test and coverage reports
+coverage/
+backend/coverage/
+
+# If you use Docker
+*.pid
+*.seed
+*.tgz
+docker-compose.override.yml
+
+# =========================================================
+# 🧱 PLACEHOLDER FOR FUTURE FRONTEND (React / Vite / Next)
+# =========================================================
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/.DS_Store
