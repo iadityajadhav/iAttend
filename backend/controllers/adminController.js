@@ -153,3 +153,27 @@ exports.deleteClass = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+//To get classes
+exports.getAdminClasses = async (req, res) => {
+  try {
+    const { id } = req.user; // from auth middleware
+
+    // Find logged-in admin
+    const admin = await Admin.findById(id);
+
+    if (!admin) {
+      return res.status(404).json({ success: false, message: "Admin not found" });
+    }
+
+    // Return classes array
+    return res.status(200).json({
+      success: true,
+      classes: admin.classes
+    });
+
+  } catch (err) {
+    console.error("Error fetching admin classes:", err);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};

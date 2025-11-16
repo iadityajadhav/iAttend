@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerAdmin, addClass, updateClass, deleteClass } = require('../controllers/adminController');
+const { registerAdmin, addClass, updateClass, deleteClass, getAdminClasses } = require('../controllers/adminController');
 const validateRegistration = require('../middlewares/validateRegistration');
 const { loginUser } = require('../controllers/loginController');
 const validateLogin = require('../middlewares/validateLogin');
@@ -22,6 +22,8 @@ router.post('/add-class', authMiddleware, addClass);
 router.put('/update-class', authMiddleware, updateClass);
 
 router.delete('/delete-class', authMiddleware, deleteClass)
+
+router.get("/get-classes", authMiddleware, getAdminClasses);
 
 router.post('/logout', authMiddleware, logoutUser);
 
