@@ -17,6 +17,7 @@ router.put('/update-profile', authMiddleware, validateRegistration('student'), u
 
 router.put('/update-password', authMiddleware, updatePassword('student'));
 
+//http://localhost:5000/api/student/get-attendance?subject=ML&branch=Computer Engineering&year=FE&sem=1
 router.get('/get-attendance', authMiddleware, getStudentSubjectAttendance);
 
 router.post('/logout', authMiddleware, logoutUser);

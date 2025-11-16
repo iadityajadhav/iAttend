@@ -66,7 +66,7 @@ export default function Navbar({ onSidebarToggle, sidebarOpen }) {
             onClick={onSidebarToggle}
             className="md:hidden px-3 py-2 bg-indigo-500 text-white rounded-lg"
           >
-            {sidebarOpen ? "Close" : "Menu"}
+            {sidebarOpen ? "Close" : "Profile"}
           </button>
 
         </div>
