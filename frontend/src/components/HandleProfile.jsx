@@ -212,7 +212,7 @@ export default function HandleProfile() {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 bg-white shadow-xl overflow-y-auto border-r border-gray-200 p-6 transition-transform duration-300 ease-in-out
+        className={`fixed top-20 left-0 h-[calc(100vh-4rem)] w-80 bg-white shadow overflow-y-auto border-r border-gray-200 p-6 transition-transform duration-300 ease-in-out
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:block z-40`}
       >
         {/* Logout + Title + Edit Buttons */}

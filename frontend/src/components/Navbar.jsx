@@ -6,7 +6,7 @@ export default function Navbar({ onSidebarToggle, sidebarOpen }) {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white shadow-lg border-b border-[#E2E8F0] z-50">
+    <nav className="fixed top-0 left-0 w-full bg-white shadow border-b border-[#E2E8F0] z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
