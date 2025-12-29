@@ -7,67 +7,93 @@ const Teacher = require('../models/Teacher');
 exports.getAttendanceBySubject = async (req, res) => {
   try {
     const teacherId = req.user.id;
+
     const { branch, year, sem, subject, date } = req.query;
 
-    if (!branch || !year || !sem || !subject) {
-      return res.status(400).json({ message: 'Branch, year, sem, and subject are required' });
+    // 1️⃣ Get teacher details
+    const teacher = await Teacher.findById(teacherId);
+
+    if (!teacher) {
+      return res.status(404).json({ message: 'Teacher not found' });
     }
 
-    // ✅ Validate teacher
-    const teacher = await Teacher.findById(teacherId).select('collegeId name');
-    if (!teacher) return res.status(404).json({ message: 'Teacher not found' });
+    const collegeId = teacher.collegeId;
 
-    // ✅ Fetch students WITHOUT lowercasing (case-sensitive fix)
-    const students = await Student.find({
-      collegeId: teacher.collegeId,
-      branch: branch,
-      year: year,
-      sem: Number(sem),
-    }).select('name userId roll _id');
+    // 2️⃣ Validate class belongs to teacher
+    const classExists = teacher.classes.some(
+      cls =>
+        cls.branch === branch &&
+        cls.year === year &&
+        cls.sem == sem &&
+        cls.subject === subject
+    );
 
-    if (!students.length) {
-      return res.status(404).json({ message: 'No students found for this class' });
+    if (!classExists) {
+      return res.status(403).json({
+        message: 'You are not assigned to this class',
+      });
     }
 
-    const studentIds = students.map(s => s._id);
-    const dateFilter = date ? { date } : {};
+    // 3️⃣ Build filter for attendance
+    const filter = {
+      collegeId,
+      branch,
+      year,
+      sem,
+      subject,
+    };
 
-    // ✅ Fetch attendance records
-    const attendanceRecords = await AttendanceRecord.find({
-      studentId: { $in: studentIds },
-      subject: subject,
-      ...dateFilter,
-    }).select('studentId date');
+    if (date) {
+      filter.date = date;
+    }
 
-    // ✅ Group attendance by student
-    const attendanceMap = new Map();
-    attendanceRecords.forEach(rec => {
-      const key = rec.studentId.toString();
-      if (!attendanceMap.has(key)) attendanceMap.set(key, []);
-      attendanceMap.get(key).push(rec.date);
+    // 4️⃣ Fetch attendance records
+    const records = await AttendanceRecord.find(filter)
+      .sort({ date: 1, lectureNumber: 1 })
+      .select(
+        'name userId roll date lectureNumber attendedAt'
+      );
+
+    if (!records.length) {
+      return res.status(200).json({
+        success: true,
+        message: 'No attendance records found',
+        data: [],
+      });
+    }
+
+    // 5️⃣ Group by student
+    const grouped = {};
+
+    records.forEach((rec) => {
+      if (!grouped[rec.userId]) {
+        grouped[rec.userId] = {
+          name: rec.name,
+          roll: rec.roll,
+          userId: rec.userId,
+          attendance: [],
+        };
+      }
+
+      grouped[rec.userId].attendance.push({
+        date: rec.date,
+        lectureNumber: rec.lectureNumber,
+        attendedAt: rec.attendedAt,
+      });
     });
-
-    // ✅ Build response
-    const data = students.map(stu => ({
-      name: stu.name,
-      roll: stu.roll,
-      userId: stu.userId,
-      studentId: stu._id,
-      status: date
-        ? (attendanceMap.has(stu._id.toString()) ? 'Present' : 'Absent')
-        : `${attendanceMap.get(stu._id.toString())?.length || 0} Lectures Present`,
-    }));
 
     res.status(200).json({
       success: true,
-      message: date
-        ? `Attendance for ${subject} on ${date}`
-        : `Attendance summary for ${subject}`,
-      totalStudents: students.length,
-      data,
+      subject,
+      branch,
+      year,
+      sem,
+      totalStudents: Object.keys(grouped).length,
+      records: Object.values(grouped),
     });
-  } catch (err) {
-    console.error('Error fetching attendance:', err);
+
+  } catch (error) {
+    console.error('Attendance fetch error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -88,7 +114,7 @@ exports.updateAttendanceStatus = async (req, res) => {
 
     const existingRecord = await AttendanceRecord.findOne({
       userId: String(userId).trim(),
-      subject: String(subject).trim().toLowerCase(),
+      subject: String(subject).trim(),
       date,
       lectureNumber,
     });
