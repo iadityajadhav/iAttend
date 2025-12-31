@@ -81,6 +81,12 @@ export default function Landing() {
         </div>
       </section>
 
+      <center>
+        <div className="mt-10 text-sm text-gray-500 pb-[20px]">
+          &copy; 2025 iAttend. All rights reserved.
+        </div>
+      </center>
+
     </div>
   );
 }
