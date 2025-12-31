@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerStudent, getStudentSubjectAttendance } = require('../controllers/studentController');
+const { registerStudent, getStudentSubjectAttendance, studentViewAttendance } = require('../controllers/studentController');
 const validateRegistration = require('../middlewares/validateRegistration');
 const { loginUser } = require('../controllers/loginController');
 const validateLogin = require('../middlewares/validateLogin');
@@ -23,5 +23,7 @@ router.get('/get-attendance', authMiddleware, getStudentSubjectAttendance);
 router.post('/logout', authMiddleware, logoutUser);
 
 router.post('/delete-account', requestAccountDeletion('student'));
+
+router.get('/view-attendance', authMiddleware, studentViewAttendance);
 
 module.exports = router;

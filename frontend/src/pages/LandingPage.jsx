@@ -20,14 +20,14 @@ export default function Landing() {
 
           <div className="mt-8 space-x-4">
             <Link
-              to="/login"
+              to="/login/student"
               className="px-6 py-3 rounded-lg bg-[#0E7490] text-white text-lg hover:bg-[#6366F1] transition"
             >
               Get Started
             </Link>
 
             <Link
-              to="/register"
+              to="/register/student"
               className="px-6 py-3 rounded-lg border border-[#6366F1] text-[#6366F1] text-lg hover:bg-[#6366F1] hover:text-white transition"
             >
               Create Account

@@ -133,3 +133,78 @@ exports.getStudentSubjectAttendance = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+exports.studentViewAttendance = async (req, res) => {
+  try {
+    const studentId = req.user.id;
+    const { subject } = req.query;
+
+    if (!subject)
+      return res.status(400).json({ message: "Subject is required" });
+
+    // 1️⃣ Get ALL lectures conducted for this subject
+    const allLectures = await AttendanceRecord.find({
+      subject,
+    }).select("date lectureNumber");
+
+    if (!allLectures.length) {
+      return res.json({
+        success: true,
+        subject,
+        totalLectures: 0,
+        present: 0,
+        absent: 0,
+        percentage: 0,
+        records: [],
+      });
+    }
+
+    // Unique lectures
+    const lectureSet = new Map();
+    allLectures.forEach((l) => {
+      lectureSet.set(`${l.date}|${l.lectureNumber}`, l);
+    });
+
+    const totalLectures = lectureSet.size;
+
+    // 2️⃣ Student's attendance
+    const studentRecords = await AttendanceRecord.find({
+      studentId,
+      subject,
+    });
+
+    const presentSet = new Set(
+      studentRecords.map(
+        (r) => `${r.date}|${r.lectureNumber}`
+      )
+    );
+
+    // 3️⃣ Build final attendance list
+    const attendance = [...lectureSet.keys()].map((key) => {
+      const [date, lectureNumber] = key.split("|");
+      return {
+        date,
+        lectureNumber: Number(lectureNumber),
+        status: presentSet.has(key) ? "Present" : "Absent",
+      };
+    });
+
+    const present = attendance.filter(a => a.status === "Present").length;
+    const absent = totalLectures - present;
+    const percentage = ((present / totalLectures) * 100).toFixed(0);
+
+    res.json({
+      success: true,
+      subject,
+      totalLectures,
+      present,
+      absent,
+      percentage,
+      attendance,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
