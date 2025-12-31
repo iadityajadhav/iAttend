@@ -1,4 +1,4 @@
-# iAttend – Attendance Management System
+# 🏫 iAttend – Smart Attendance Management System
 
 
 
@@ -12,11 +12,11 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-## Features
+## 🚀 Features
 
 
 
-### Student Module
+### 🧑🏻‍🎓 Student Module
 
 - Login and profile view
 
@@ -32,7 +32,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-### Teacher Module
+### 🧑🏻‍🏫 Teacher Module
 
 - Create attendance sessions
 
@@ -46,7 +46,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-### Admin Module
+### 🧑🏻‍💼 Admin Module
 
 - Creates college Id
 
@@ -58,11 +58,11 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-## Tech Stack
+## ⚙️ Tech Stack
 
 
 
-### Frontend
+### 💻 Frontend
 
 - React.js
 
@@ -72,7 +72,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-### Backend
+### 🖥️ Backend
 
 - Node.js
 
@@ -88,7 +88,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-## Authentication
+## 🔐 Authentication
 
 
 
@@ -106,7 +106,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-## Attendance Logic
+## 📝 Attendance Logic
 
 
 
@@ -134,19 +134,19 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 - Teacher can view:
 
-  - Total lectures
+ - Total lectures
 
-  - Present count
+ - Present count
 
-  - Absent count
+ - Absent count
 
-  - Attendance percentage
+ - Attendance percentage
 
  And can:
 
-  -mark student as present or absent on a single click
+ - mark student as present or absent on a single click
 
-  -manually add students attendance
+ - manually add students attendance
 
 
 
