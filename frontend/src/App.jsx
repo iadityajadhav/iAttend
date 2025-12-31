@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import AdminProfile from "./pages/profiles/AdminProfile";
 import TeacherProfile from "./pages/profiles/TeacherProfile";
 import StudentProfile from "./pages/profiles/StudentProfile";
+import TeacherViewAttendance from "./pages/attendance/TeacherViewAttendance";
 
 export default function App() {
   return (
@@ -28,6 +29,9 @@ export default function App() {
           <Route path="/admin/profile" element={<AdminProfile />} />
           <Route path="/student/profile" element={<StudentProfile />} />
           <Route path="/teacher/profile" element={<TeacherProfile />} />
+
+          {/*Attendance Routes*/}
+          <Route path="/teacher/view-attendance" element={<TeacherViewAttendance />}/>
         </Routes>
       </Layout>
     </BrowserRouter>

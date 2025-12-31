@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TakeAttendance from "./TakeAttendance";
+import { useNavigate } from "react-router-dom";
 
 export default function TeacherClasses() {
   const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
 
   const [availableClasses, setAvailableClasses] = useState([]);
   const [myClasses, setMyClasses] = useState([]);
@@ -200,10 +203,21 @@ export default function TeacherClasses() {
                   </div>
 
                   <button
+                    onClick={() =>
+                      navigate(
+                        `/teacher/view-attendance?branch=${cls.branch}&year=${cls.year}&sem=${cls.sem}&subject=${cls.subject}`
+                      )
+                    }
+                    className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
+                  >
+                    View Attendance
+                  </button>
+
+                  <button
                     onClick={() => handleRemoveClass(cls)}
                     className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
                   >
-                    Remove
+                    Remove Class
                   </button>
                 </div>
               ))}
