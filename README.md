@@ -1,4 +1,4 @@
-\# iAttend – Attendance Management System
+# iAttend – Attendance Management System
 
 
 
@@ -12,75 +12,45 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-\## Features
+## Features
 
 
 
-\### Student Module
+### Student Module
 
-\- Login and profile view
+- Login and profile view
 
-\- View subject-wise attendance
+- View subject-wise attendance
 
-\- View:
+- View:
 
-&nbsp; - Present / Absent status
+ - Present / Absent status
 
-&nbsp; - Total lectures
+ - Total lectures
 
-&nbsp; - Attendance percentage
-
-
-
-\### Teacher Module
-
-\- Create attendance sessions
-
-\- Mark attendance
-
-\- View attendance records
-
-\- Update attendance
-
-\- Lecture-wise and date-wise attendance view
+ - Attendance percentage
 
 
 
-\### Admin Module
+### Teacher Module
 
-\- Creates college Id
+- Create attendance sessions
 
-\- Create classes and assign subjects
+- Mark attendance
 
+- View attendance records
 
+- Update attendance
 
----
-
-
-
-\## Tech Stack
+- Lecture-wise and date-wise attendance view
 
 
 
-\### Frontend
+### Admin Module
 
-\- React.js
+- Creates college Id
 
-\- Tailwind CSS
-
-\- Axios
-
-
-
-\### Backend
-
-\- Node.js
-
-\- Express.js
-
-\- MongoDB
-
-\- JWT Authentication
+- Create classes and assign subjects
 
 
 
@@ -88,17 +58,29 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-\## Authentication
+## Tech Stack
 
 
 
-\- JWT based authentication
+### Frontend
 
-\- Token stored in localStorage
+- React.js
 
-\- Token sent via Authorization header
+- Tailwind CSS
 
-\- Protected routes for Student, Teacher and Admin
+- Axios
+
+
+
+### Backend
+
+- Node.js
+
+- Express.js
+
+- MongoDB
+
+- JWT Authentication
 
 
 
@@ -106,33 +88,51 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 
 
-\## Attendance Logic
+## Authentication
 
 
 
-\- Attendance stored per:
+- JWT based authentication
 
-&nbsp; - Student
+- Token stored in localStorage
 
-&nbsp; - Subject
+- Token sent via Authorization header
 
-&nbsp; - Date
+- Protected routes for Student, Teacher and Admin
 
-&nbsp; - Lecture number
 
-\- Duplicate attendance is prevented
 
-\- Student can view:
+---
 
-&nbsp; - Total lectures
 
-&nbsp; - Present count
 
-&nbsp; - Absent count
+## Attendance Logic
 
-&nbsp; - Attendance percentage
 
-\- Teacher can view:
+
+- Attendance stored per:
+
+ - Student
+
+ - Subject
+
+ - Date
+
+ - Lecture number
+
+- Duplicate attendance is prevented
+
+- Student can view:
+
+ - Total lectures
+
+ - Present count
+
+ - Absent count
+
+ - Attendance percentage
+
+- Teacher can view:
 
   - Total lectures
 
@@ -142,9 +142,9 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
   - Attendance percentage
 
-&nbsp; And can:
+ And can:
 
-&nbsp; -mark student as present or absent on a single click
+  -mark student as present or absent on a single click
 
   -manually add students attendance
 
