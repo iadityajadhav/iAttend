@@ -109,8 +109,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 ## 📝 Attendance Logic
 
 
-
-- Attendance stored per:
+Attendance stored per:
 
  - Student
 
@@ -122,7 +121,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
 - Duplicate attendance is prevented
 
-- Student can view:
+Student can view:
 
  - Total lectures
 
@@ -132,7 +131,7 @@ It allows teachers to mark attendance of all students at once by sharing an atte
 
  - Attendance percentage
 
-- Teacher can view:
+Teacher can view:
 
  - Total lectures
 
