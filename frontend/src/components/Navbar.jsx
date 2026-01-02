@@ -10,9 +10,13 @@ export default function Navbar({ onSidebarToggle, sidebarOpen }) {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-[#0E7490]">
-          iAttend
-        </Link>
+        <div className="flex items-center gap-2">
+          <img src="/iAttend.svg" alt="iAttend Logo" className="w-12 h-12"/>
+
+          <Link to="/" className="text-2xl font-bold text-[#0E7490]">
+            iAttend
+          </Link>
+        </div>
 
         {/* Buttons + Dropdowns */}
         <div className="relative flex items-center space-x-2 md:space-x-4">
